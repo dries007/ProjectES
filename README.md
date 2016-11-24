@@ -5,7 +5,7 @@ I'm using an STM32 F7 Discovery (STM32F746G-DISCO), but I think this will help a
 
 - Clion version: 2016.3 (Linux & Windows)
 - GNU ARM Toolchain: 5.4_2016q3 (Windows) 6.2.0-1 (Arch Linux)
-- OpenOCD: 0.9.0
+- OpenOCD: 0.10.0 (dev build)
 
 **Note**: On windows, use MinGW.
 
@@ -33,8 +33,9 @@ Installation
 3. Download & Install STM32CubeMX
 	- [Website ST](http://www.st.com/en/development-tools/stm32cubemx.html)
 	- Run it once and, via `Help -> Install New Libraries`, install the STM32F7 firmware package.
-4. Download & Install OpenOCD
-	- [Website OpenOCD](http://openocd.org/)
+4. Download & Install OpenOCD (a **recent** build! Not the over a year old 0.9 build commonly found.)
+	- [Windows download](http://www.freddiechopin.info/en/download/category/10-openocd-dev)
+	- Arch linux: AUR package `openocd-git`
 	- Make sure you have the configuration `board/stm32f7discovery.cfg`.
 	  By default its at `<openocd install>/scripts/board/stm32f7discovery.cfg`
 	- If you don't, download [this](https://github.com/arduino/openOCD/tree/master/tcl) git repo and unpack `tcl` to `<openocd install>/scripts`.
@@ -90,7 +91,8 @@ Project Setup
 Debugger & Programmer Setup
 ---------------------------
 
-todo: Write Windows alternatives
+**On windows you need to enable the telnet client** 
+Requires admin command prompt: `dism /online /Enable-Feature /FeatureName:TelnetClient`
 
 1. Add external tools (`File -> Settings -> Tools -> External Tools`)
     1. OpenOCD
@@ -99,17 +101,24 @@ todo: Write Windows alternatives
         - Program: `openocd`
         - Parameter: `-f board/stm32f7discovery.cfg`
         - Working directory: full path of `build/`
-    2. OpenOCD Telnet
+    2. OpenOCD Telnet (Use putty on Windows)
         - Name: OpenOCD Telnet
         - Check `Open console`
         - Program: `telnet`
-        - Parameters: `-c 127.0.0.1 4444`
-    3. Program Target
+        - Parameters: `127.0.0.1 4444`
+    3. Program Target (Linux)
+        - Install `expect`
         - Name: Program Target
         - Check `Open console`
-        - Program: Full path of `ExpectAutoProgram`
+        - Program: Full path of `AutoProgram`
         - Parameters: `<NAME>.elf`
         - Working directory: full path of `build/`
+    3. Program Target (Windows)
+        - Name: Program Target
+        - Check `Open console`
+        - Program: `CScript.exe`
+        - Parameters: `AutoProgram.vbs <NAME>.elf`
+        - Working directory: full path of project root
 2. Create a "CDB Remote Debug" profile via `Run -> Edit Configurations...`
     - GDB: path of `arm-none-eabi-gdb` excecutable
     - 'target remote' args: `localhost:3333`

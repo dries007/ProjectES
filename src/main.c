@@ -1,13 +1,5 @@
 #include "main.h"
 
-void loop(void)
-{
-    HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_SET);
-    HAL_Delay(1000);
-    HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_RESET);
-    HAL_Delay(1000);
-}
-
 void main(void)
 {
     // Reset of all peripherals, Initializes the Flash interface and the Systick.
@@ -30,8 +22,15 @@ void main(void)
         HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
     }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-    while(true) loop();
-#pragma clang diagnostic pop
+    int delay = 1;
+
+    while(true)
+    {
+        HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_SET);
+        HAL_Delay(delay);
+        HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_RESET);
+        HAL_Delay(delay);
+
+        delay ++;
+    }
 }
