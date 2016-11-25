@@ -6,34 +6,39 @@ add_definitions(-DSTM32F746xx)
 add_definitions(-DARM_MATH_CM7)
 
 file(GLOB_RECURSE USER_SOURCES "src/*.c")
-file(GLOB_RECURSE CMSIS_SOURCES "cmsis/*.c")
-file(GLOB_RECURSE HAL_SOURCES "hal/*.c")
+file(GLOB_RECURSE CUBEMX_SOURCES "cubemx/*.c")
 file(GLOB_RECURSE BSP_SOURCES "bsp/*.c")
-file(GLOB_RECURSE COMP_SOURCES "Components/*.c")
 
 # Compiler options **PROCESSOR / BOARD DEPENDANT**
 SET(COMMON_FLAGS "-mcpu=cortex-m7 -mthumb -mthumb-interwork -mfloat-abi=hard -mfpu=fpv5-sp-d16 -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -Wall")
 
 SET(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -std=c++11")
-SET(CMAKE_C_FLAGS "${COMMON_FLAGS} -std=gnu99")
+SET(CMAKE_C_FLAGS "${COMMON_FLAGS} -std=gnu11")
 
-SET(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/LinkerScript.ld")
+SET(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/cubemx/STM32F746NGHx_FLASH.ld")
 SET(CMAKE_EXE_LINKER_FLAGS "-Wl,-gc-sections -T ${LINKER_SCRIPT}")
 
-add_library(CMSIS "${CMSIS_SOURCES}" cmsis/gcc/startup_stm32f746xx.s)
-add_library(HAL "${HAL_SOURCES}")
-add_library(BSP "${BSP_SOURCES}")
-add_library(Components "${COMP_SOURCES}")
+add_library(LIB
+        cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates/system_stm32f7xx.c
+        cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates/gcc/startup_stm32f746xx.s)
 
-include_directories(Components)
-include_directories(cmsis)
-include_directories(hal)
-include_directories(bsp)
+add_library(BSP ${BSP_SOURCES})
+
 include_directories(src)
+include_directories(cubemx/Inc)
+include_directories(cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Include)
+include_directories(cubemx/Drivers/CMSIS/Include)
+include_directories(cubemx/Drivers/STM32F7xx_HAL_Driver/Inc)
+include_directories(cubemx/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc)
+include_directories(cubemx/Middlewares/ST/STM32_USB_Host_Library/Core/Inc)
+include_directories(cubemx/Middlewares/Third_Party/FatFs/src)
+include_directories(cubemx/Middlewares/Third_Party/LwIP/src/include)
+include_directories(cubemx/Middlewares/Third_Party/LwIP/system)
+include_directories(bsp)
 
-add_executable(${PROJECT_NAME}.elf ${COMP_SOURCES} ${CMSIS_SOURCES} ${HAL_SOURCES} ${BSP_SOURCES} ${USER_SOURCES} ${LINKER_SCRIPT})
+add_executable(${PROJECT_NAME}.elf ${USER_SOURCES} ${CUBEMX_SOURCES} ${LINKER_SCRIPT})
 
-target_link_libraries(${PROJECT_NAME}.elf Components CMSIS HAL BSP)
+target_link_libraries(${PROJECT_NAME}.elf LIB BSP)
 
 # Make map, hex and bin
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_SOURCE_DIR}/build/${PROJECT_NAME}.map")

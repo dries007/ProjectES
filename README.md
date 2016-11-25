@@ -44,12 +44,12 @@ Project Setup
 -------------
 
 1. Make new project in STM32CubeMX
-	1. Select the right board. (Or if its not listed, select the raw MCU.)
-	2. Leave the configuration default. (Or do pinout configuration, if raw MCU.)
+	1. Select the right board. (Or if its not listed, select the raw MCU.) **Make sure to chekc "Initialize all perhiperals with their default Mode"**
+	2. Select all the right perhiperals, middlewares, ... you might need.
 	3. In the project settings, set `Toolchain/IDE` to `SW4STM32`.
 		(You can change the stack size here too.)
 	4. Save the project as a template, so you can easily make copies.
-	5. Save project as, and set the name and project location.
+	5. Save project as, and set the name and project location. **Set the project location to `cubemx`!**
     6. Finally, `Generate code`.
 2. Import a new project 'from sources' in CLion
     1. Import the root project folder.
