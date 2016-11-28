@@ -46,6 +46,8 @@
 /* Exported functions ------------------------------------------------------- */
 
 void SysTick_Handler(void);
+void TIM4_IRQHandler(void);
+void ETH_IRQHandler(void);
 void OTG_FS_IRQHandler(void);
 void OTG_HS_IRQHandler(void);
 

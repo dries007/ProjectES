@@ -54,10 +54,6 @@
 /* ETH Variables initialization ----------------------------------------------*/
 void Error_Handler(void);
 
-/* DHCP Variables initialization ---------------------------------------------*/
-uint32_t DHCPfineTimer = 0;
-uint32_t DHCPcoarseTimer = 0; 
-
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
@@ -77,16 +73,16 @@ ip4_addr_t gw;
   */
 void MX_LWIP_Init(void)
 {
-  /* Initilialize the LwIP stack without RTOS */
-  lwip_init();
+  /* Initilialize the LwIP stack with RTOS */
+  tcpip_init( NULL, NULL );
 
   /* IP addresses initialization with DHCP (IPv4) */
   ipaddr.addr = 0;
   netmask.addr = 0;
   gw.addr = 0;
 
-  /* add the network interface (IPv4/IPv6) without RTOS */
-  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
+  /* add the network interface (IPv4/IPv6) with RTOS */
+  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
 
   /* Registers the default network interface */
   netif_set_default(&gnetif);

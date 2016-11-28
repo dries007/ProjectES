@@ -20,11 +20,14 @@
       <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Core/Src" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/FatFs/src" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/FatFs/src/drivers" />
+      <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS" />
+      <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/FreeRTOS/Source/include" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/LwIP/src/include" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/LwIP/system" />
       <file path="$PROJECT_DIR$/cubemx/Src" />
       <file path="$PROJECT_DIR$/hal" />
       <file path="$PROJECT_DIR$/lib" />
+      <file path="$PROJECT_DIR$/scrap" />
       <file path="$PROJECT_DIR$/src" />
     </sourceRoots>
     <libraryRoots>

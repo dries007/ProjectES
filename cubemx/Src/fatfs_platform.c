@@ -49,6 +49,8 @@ uint8_t	BSP_PlatformIsDetected(void) {
     status = (uint8_t)0x00;
   }
   /* USER CODE BEGIN 1 */
+  //todo: find out why this is wrong...
+  status = (uint8_t) !status;
   /* user code can be inserted here */
   /* USER CODE END 1 */ 
   return status;

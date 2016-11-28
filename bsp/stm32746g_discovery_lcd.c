@@ -140,7 +140,7 @@ static void LL_ConvertLineToARGB8888(void * pSrc, void *pDst, uint32_t xSize, ui
   * @brief  Initializes the LCD.
   * @retval LCD state
   */
-uint8_t BSP_LCD_Init(void)
+uint8_t  BSP_LCD_Init(uint8_t r, uint8_t g, uint8_t b)
 {    
   /* Select the used LCD */
 
@@ -163,9 +163,9 @@ uint8_t BSP_LCD_Init(void)
   hLtdcHandler.LayerCfg->ImageHeight = RK043FN48H_HEIGHT;
 
   /* Background value */
-  hLtdcHandler.Init.Backcolor.Blue = 0;
-  hLtdcHandler.Init.Backcolor.Green = 0;
-  hLtdcHandler.Init.Backcolor.Red = 0;
+  hLtdcHandler.Init.Backcolor.Blue = b;
+  hLtdcHandler.Init.Backcolor.Green = g;
+  hLtdcHandler.Init.Backcolor.Red = r;
   
   /* Polarity */
   hLtdcHandler.Init.HSPolarity = LTDC_HSPOLARITY_AL;

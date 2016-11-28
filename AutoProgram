@@ -1,6 +1,6 @@
 #!/usr/bin/expect
 
-set timeout 5
+set timeout 25
 
 set name [lindex $argv 0]
 
@@ -8,12 +8,14 @@ spawn telnet 127.0.0.1 4444
 
 expect "Open On-Chip Debugger"
 
-send "reset halt
+send "reset_config none separate
+reset halt
 "
 sleep 1
 send "flash write_image erase $name
 "
+expect "bytes from file"
 sleep 1
-send "reset
+send "reset halt
 "
 sleep 1

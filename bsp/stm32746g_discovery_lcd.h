@@ -181,7 +181,7 @@ typedef enum
 /** @addtogroup STM32746G_DISCOVERY_LCD_Exported_Functions
   * @{
   */
-uint8_t  BSP_LCD_Init(void);
+uint8_t  BSP_LCD_Init(uint8_t r, uint8_t g, uint8_t b);
 uint8_t  BSP_LCD_DeInit(void);
 uint32_t BSP_LCD_GetXSize(void);
 uint32_t BSP_LCD_GetYSize(void);
