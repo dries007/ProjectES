@@ -5,8 +5,20 @@
  * @author Dries007
  */
 
-#include <ff.h>
 #include "app_main.h"
+
+#include "../cubemx/Drivers/CMSIS/Include/core_cm7.h"
+#include "../bsp/stm32746g_discovery.h"
+#include "../bsp/stm32746g_discovery_lcd.h"
+#include "../bsp/stm32746g_discovery_sd.h"
+#include "../cubemx/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+#include "../cubemx/Inc/fatfs.h"
+#include "../cubemx/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
+#include "../cubemx/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h"
+#include "../cubemx/Middlewares/Third_Party/FatFs/src/ff.h"
+#include "../cubemx/Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+#include "../cubemx/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h"
+#include "../cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
 
 void app_pre_init();
 void app_init();
@@ -17,6 +29,58 @@ void lcdTask(void const * argument);
 void ledTask(void const * argument);
 
 extern void Error_Handler(void);
+
+void sd_test()
+{
+    BSP_LCD_Clear(0);
+
+    FRESULT res;
+    FATFS fs;
+    DIR dir;
+    FILINFO fno;
+
+    res = f_mount(&fs, "", 1); configASSERT_EQ(res, FR_OK);
+    res = f_opendir(&dir, ""); configASSERT_EQ(res, FR_OK);
+
+    for (uint32_t count = 0; true; count++)
+    {
+        res = f_readdir(&dir, &fno);
+        configASSERT_EQ(res, FR_OK);
+        if (fno.fname[0] == 0) break;
+
+        BSP_LCD_DisplayStringAtLine((uint16_t) (count + 3), (uint8_t *) fno.fname);
+    }
+
+    FIL file;
+    res = f_open(&file, "TEST.TXT", FA_READ | FA_WRITE | FA_OPEN_ALWAYS);
+    configASSERT_EQ(res, FR_OK);
+
+    res = f_lseek(&file, f_size(&file));
+    configASSERT_EQ(res, FR_OK);
+
+    unsigned int wr = 0;
+//    res = f_write(&file, "OMG!", 4, &wr);
+    wr = (unsigned int) f_printf( &file, "TEST!\t\n");
+
+    configASSERT_EQ(res, FR_OK);
+
+    taskENTER_CRITICAL();
+    res = f_sync(&file);
+    configASSERT_EQ(res, FR_OK);
+
+    res = f_close(&file);
+    configASSERT_EQ(res, FR_OK);
+    taskEXIT_CRITICAL();
+
+    res = f_mount(NULL, "", 1);
+    configASSERT_EQ(res, FR_OK);
+
+    char str[128];
+    sprintf(str, "OMG! Wr: %d Size: %d", wr, (int) f_size(&file));
+    BSP_LCD_DisplayStringAtLine( (uint16_t) ((BSP_LCD_GetYSize() / BSP_LCD_GetFont()->Height) - 1), (uint8_t*) str);
+
+    return;
+}
 
 void app_pre_init()
 {
@@ -59,57 +123,15 @@ void app_init()
     MX_FATFS_Init();
 
     BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetFont()->Height * 2), (uint8_t*) SD_Path, CENTER_MODE);
-
-    FRESULT res;
-    FATFS fs;
-    DIR dir;
-    FILINFO fno;
-
-    res = f_mount(&fs, "", 1); configASSERT_EQ(res, FR_OK);
-    res = f_opendir(&dir, ""); configASSERT_EQ(res, FR_OK);
-
-    for (uint32_t count = 0; true; count++)
-    {
-        res = f_readdir(&dir, &fno);
-        configASSERT_EQ(res, FR_OK);
-        if (fno.fname[0] == 0) break;
-
-        BSP_LCD_DisplayStringAtLine((uint16_t) (count + 3), (uint8_t *) fno.fname);
-    }
-
-
-    FIL file;
-    res = f_open(&file, "TEST.TXT", FA_READ | FA_WRITE | FA_OPEN_ALWAYS);
-    configASSERT_EQ(res, FR_OK);
-
-    res = f_lseek(&file, f_size(&file));
-    configASSERT_EQ(res, FR_OK);
-
-    unsigned int wr = 0;
-    res = f_write(&file, "OMG!", 4, &wr);
-    configASSERT_EQ(res, FR_OK);
-
-//    res = f_sync(&file);
-//    configASSERT_EQ(res, FR_OK);
-
-    res = f_close(&file);
-    configASSERT_EQ(res, FR_OK);
-
-    res = f_mount(NULL, "", 1);
-    configASSERT_EQ(res, FR_OK);
-
-    char str[128];
-    sprintf(str, "OMG! Wr: %d Size: %d", wr, (int) f_size(&file));
-    BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetYSize() / 2) - BSP_LCD_GetFont()->Height, (uint8_t*) str, CENTER_MODE);
 }
 
 void app_post_init()
 {
     osThreadDef(lcdBG, lcdTask, osPriorityAboveNormal, 0, configMINIMAL_STACK_SIZE);
     osThreadCreate(osThread(lcdBG), NULL);
-
-    osThreadDef(ledToggle, ledTask, osPriorityAboveNormal, 0, configMINIMAL_STACK_SIZE);
-    osThreadCreate(osThread(ledToggle), NULL);
+//
+//    osThreadDef(ledToggle, ledTask, osPriorityAboveNormal, 0, configMINIMAL_STACK_SIZE);
+//    osThreadCreate(osThread(ledToggle), NULL);
 }
 
 void app_main_thread()
@@ -117,6 +139,8 @@ void app_main_thread()
     uint32_t previousWakeTime = osKernelSysTick();
 
     BSP_LCD_Clear(0);
+
+    sd_test();
 
     while (true)
     {

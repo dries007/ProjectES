@@ -55,7 +55,8 @@
 /-----------------------------------------------------------------------------*/
 
 #define _FS_TINY             0      /* 0:Normal or 1:Tiny */
-/* This option switches tiny buffer configuration. (0:Normal or 1:Tiny)
+/* This option switches tiny buffer configuration. (0:Normal or 1:Tiny)reset halt
+ *
 /  At the tiny configuration, size of the file object (FIL) is reduced _MAX_SS
 /  bytes. Instead of private sector buffer eliminated from the file object,
 /  common sector buffer in the file system object (FATFS) is used for the file

@@ -3,11 +3,11 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
-      <file path="$PROJECT_DIR$/BSP/Components" />
-      <file path="$PROJECT_DIR$/BSP/STM32746G-Discovery" />
-      <file path="$PROJECT_DIR$/Components" />
       <file path="$PROJECT_DIR$/bsp" />
+      <file path="$PROJECT_DIR$/bsp/Components" />
+      <file path="$PROJECT_DIR$/BSP/STM32746G-Discovery" />
       <file path="$PROJECT_DIR$/cmsis" />
+      <file path="$PROJECT_DIR$/Components" />
       <file path="$PROJECT_DIR$/cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Include" />
       <file path="$PROJECT_DIR$/cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates" />
       <file path="$PROJECT_DIR$/cubemx/Drivers/CMSIS/Include" />
@@ -27,7 +27,6 @@
       <file path="$PROJECT_DIR$/cubemx/Src" />
       <file path="$PROJECT_DIR$/hal" />
       <file path="$PROJECT_DIR$/lib" />
-      <file path="$PROJECT_DIR$/scrap" />
       <file path="$PROJECT_DIR$/src" />
     </sourceRoots>
     <libraryRoots>
@@ -36,6 +35,7 @@
     <excludeRoots>
       <file path="$PROJECT_DIR$/build/CMakeFiles" />
       <file path="$PROJECT_DIR$/cmake-build-debug/CMakeFiles" />
+      <file path="$PROJECT_DIR$/scrap" />
     </excludeRoots>
   </component>
 </project>

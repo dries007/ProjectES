@@ -9,6 +9,8 @@
 #include "ffconf.h"
 
 #include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 #include <main.h>
 
@@ -23,7 +25,6 @@
 #include <ff.h>
 
 #include <arm_math.h>
-//#include <math.h>
 
 #include <cmsis_os.h>
 
