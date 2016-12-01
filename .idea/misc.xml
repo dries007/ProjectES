@@ -3,11 +3,11 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
+      <file path="$PROJECT_DIR$/BSP/STM32746G-Discovery" />
+      <file path="$PROJECT_DIR$/Components" />
       <file path="$PROJECT_DIR$/bsp" />
       <file path="$PROJECT_DIR$/bsp/Components" />
-      <file path="$PROJECT_DIR$/BSP/STM32746G-Discovery" />
       <file path="$PROJECT_DIR$/cmsis" />
-      <file path="$PROJECT_DIR$/Components" />
       <file path="$PROJECT_DIR$/cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Include" />
       <file path="$PROJECT_DIR$/cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates" />
       <file path="$PROJECT_DIR$/cubemx/Drivers/CMSIS/Include" />
@@ -16,6 +16,8 @@
       <file path="$PROJECT_DIR$/cubemx/Inc" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Src" />
+      <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc" />
+      <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Core/Inc" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/ST/STM32_USB_Host_Library/Core/Src" />
       <file path="$PROJECT_DIR$/cubemx/Middlewares/Third_Party/FatFs/src" />

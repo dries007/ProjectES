@@ -1,8 +1,8 @@
 /**
- ******************************************************************************
-  * @file            : USB_HOST
-  * @version         : v1.0_Cube
-  * @brief           :  This file implements the USB Host 
+  ******************************************************************************
+  * File Name          : SPDIFRX.c
+  * Description        : This file provides code for the configuration
+  *                      of the SPDIFRX instances.
   ******************************************************************************
   *
   * Copyright (c) 2016 STMicroelectronics International N.V. 
@@ -40,77 +40,94 @@
   * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-*/
+  */
 
 /* Includes ------------------------------------------------------------------*/
+#include "spdifrx.h"
 
-#include "usb_host.h"
-#include "usbh_core.h"
-#include "usbh_msc.h"
+#include "gpio.h"
 
-/* USB Host Core handle declaration */
-USBH_HandleTypeDef hUsbHostFS;
-ApplicationTypeDef Appli_state = APPLICATION_IDLE;
-
-/**
-* -- Insert your variables declaration here --
-*/ 
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
 
-/*
-* user callbak declaration
-*/ 
-static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id);
+SPDIFRX_HandleTypeDef hspdif;
 
-/**
-* -- Insert your external function declaration here --
-*/ 
+/* SPDIFRX init function */
+void MX_SPDIFRX_Init(void)
+{
+
+  hspdif.Instance = SPDIFRX;
+  hspdif.Init.InputSelection = SPDIFRX_INPUT_IN0;
+  hspdif.Init.Retries = SPDIFRX_MAXRETRIES_NONE;
+  hspdif.Init.WaitForActivity = SPDIFRX_WAITFORACTIVITY_OFF;
+  hspdif.Init.ChannelSelection = SPDIFRX_CHANNEL_A;
+  hspdif.Init.DataFormat = SPDIFRX_DATAFORMAT_LSB;
+  hspdif.Init.StereoMode = SPDIFRX_STEREOMODE_DISABLE;
+  hspdif.Init.PreambleTypeMask = SPDIFRX_PREAMBLETYPEMASK_OFF;
+  hspdif.Init.ChannelStatusMask = SPDIFRX_CHANNELSTATUS_OFF;
+  hspdif.Init.ValidityBitMask = SPDIFRX_VALIDITYMASK_OFF;
+  hspdif.Init.ParityErrorMask = SPDIFRX_PARITYERRORMASK_OFF;
+  if (HAL_SPDIFRX_Init(&hspdif) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+void HAL_SPDIFRX_MspInit(SPDIFRX_HandleTypeDef* spdifrxHandle)
+{
+
+  GPIO_InitTypeDef GPIO_InitStruct;
+  if(spdifrxHandle->Instance==SPDIFRX)
+  {
+  /* USER CODE BEGIN SPDIFRX_MspInit 0 */
+
+  /* USER CODE END SPDIFRX_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_SPDIFRX_CLK_ENABLE();
+  
+    /**SPDIFRX GPIO Configuration    
+    PD7     ------> SPDIFRX_IN0 
+    */
+    GPIO_InitStruct.Pin = SPDIF_RX0_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF8_SPDIFRX;
+    HAL_GPIO_Init(SPDIF_RX0_GPIO_Port, &GPIO_InitStruct);
+
+  /* USER CODE BEGIN SPDIFRX_MspInit 1 */
+
+  /* USER CODE END SPDIFRX_MspInit 1 */
+  }
+}
+
+void HAL_SPDIFRX_MspDeInit(SPDIFRX_HandleTypeDef* spdifrxHandle)
+{
+
+  if(spdifrxHandle->Instance==SPDIFRX)
+  {
+  /* USER CODE BEGIN SPDIFRX_MspDeInit 0 */
+
+  /* USER CODE END SPDIFRX_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_SPDIFRX_CLK_DISABLE();
+  
+    /**SPDIFRX GPIO Configuration    
+    PD7     ------> SPDIFRX_IN0 
+    */
+    HAL_GPIO_DeInit(SPDIF_RX0_GPIO_Port, SPDIF_RX0_Pin);
+
+  }
+  /* USER CODE BEGIN SPDIFRX_MspDeInit 1 */
+
+  /* USER CODE END SPDIFRX_MspDeInit 1 */
+} 
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
-
-/* init function */				        
-void MX_USB_HOST_Init(void)
-{
-  /* Init Host Library,Add Supported Class and Start the library*/
-  USBH_Init(&hUsbHostFS, USBH_UserProcess, HOST_FS);
-
-  USBH_RegisterClass(&hUsbHostFS, USBH_MSC_CLASS);
-
-  USBH_Start(&hUsbHostFS);
-}
-
-/*
- * user callbak definition
-*/ 
-static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
-{
-
-  /* USER CODE BEGIN 2 */
-  switch(id)
-  { 
-  case HOST_USER_SELECT_CONFIGURATION:
-  break;
-    
-  case HOST_USER_DISCONNECTION:
-  Appli_state = APPLICATION_DISCONNECT;
-  break;
-    
-  case HOST_USER_CLASS_ACTIVE:
-  Appli_state = APPLICATION_READY;
-  break;
-
-  case HOST_USER_CONNECTION:
-  Appli_state = APPLICATION_START;
-  break;
-
-  default:
-  break; 
-  }
-  /* USER CODE END 2 */
-}
 
 /**
   * @}

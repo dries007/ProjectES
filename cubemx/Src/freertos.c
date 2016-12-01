@@ -44,24 +44,87 @@
 /* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
 #include "task.h"
+#include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */     
 
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
+osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
+void StartDefaultTask(void const * argument);
+
+extern void MX_FATFS_Init(void);
+extern void MX_USB_HOST_Init(void);
+extern void MX_LWIP_Init(void);
+void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* USER CODE BEGIN FunctionPrototypes */
-
+extern void app_post_init();
+extern void app_main_thread();
 /* USER CODE END FunctionPrototypes */
 
 /* Hook prototypes */
+
+/* Init FreeRTOS */
+
+void MX_FREERTOS_Init(void) {
+  /* USER CODE BEGIN Init */
+       
+  /* USER CODE END Init */
+
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* add semaphores, ... */
+  /* USER CODE END RTOS_SEMAPHORES */
+
+  /* USER CODE BEGIN RTOS_TIMERS */
+  /* start timers, add new ones, ... */
+  /* USER CODE END RTOS_TIMERS */
+
+  /* Create the thread(s) */
+  /* definition and creation of defaultTask */
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 2048);
+  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
+  /* USER CODE BEGIN RTOS_THREADS */
+  /* add threads, ... */
+  app_post_init();
+  /* USER CODE END RTOS_THREADS */
+
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+}
+
+/* StartDefaultTask function */
+void StartDefaultTask(void const * argument)
+{
+  /* init code for FATFS */
+  MX_FATFS_Init();
+
+  /* init code for USB_HOST */
+  MX_USB_HOST_Init();
+
+  /* init code for LWIP */
+  MX_LWIP_Init();
+
+  /* USER CODE BEGIN StartDefaultTask */
+  app_main_thread();
+
+  // DIE! Something horrible went wrong
+  configASSERT(1);
+  /* USER CODE END StartDefaultTask */
+}
 
 /* USER CODE BEGIN Application */
      

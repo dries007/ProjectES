@@ -115,7 +115,7 @@
 #define configMAX_CO_ROUTINE_PRIORITIES (2)
 
 /* Software timer definitions. */
-#define configUSE_TIMERS             1
+#define configUSE_TIMERS             0
 #define configTIMER_TASK_PRIORITY    (2)
 #define configTIMER_QUEUE_LENGTH     10
 #define configTIMER_TASK_STACK_DEPTH (configMINIMAL_STACK_SIZE * 2)
@@ -125,9 +125,9 @@ to exclude the API function. */
 #define INCLUDE_vTaskPrioritySet       1
 #define INCLUDE_uxTaskPriorityGet      1
 #define INCLUDE_vTaskDelete            1
-#define INCLUDE_vTaskCleanUpResources  1
+#define INCLUDE_vTaskCleanUpResources  0
 #define INCLUDE_vTaskSuspend           1
-#define INCLUDE_vTaskDelayUntil        1
+#define INCLUDE_vTaskDelayUntil        0
 #define INCLUDE_vTaskDelay             1
 #define INCLUDE_xTaskGetSchedulerState 1
 

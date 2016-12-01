@@ -7,6 +7,7 @@
 
 #include "app_main.h"
 
+// Windows, Y U DO THIS TO ME
 #include "../cubemx/Drivers/CMSIS/Include/core_cm7.h"
 #include "../bsp/stm32746g_discovery.h"
 #include "../bsp/stm32746g_discovery_lcd.h"
