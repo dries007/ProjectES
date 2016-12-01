@@ -47,7 +47,6 @@
 
 /* USER CODE BEGIN Includes */
 void init(void);
-void MX_USB_HOST_Process(void);
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
