@@ -110,13 +110,13 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* init code for FATFS */
-  MX_FATFS_Init();
+//  MX_FATFS_Init();
 
   /* init code for USB_HOST */
-  MX_USB_HOST_Init();
+//  MX_USB_HOST_Init();
 
   /* init code for LWIP */
-  MX_LWIP_Init();
+//  MX_LWIP_Init();
 
   /* USER CODE BEGIN StartDefaultTask */
   app_main_thread();

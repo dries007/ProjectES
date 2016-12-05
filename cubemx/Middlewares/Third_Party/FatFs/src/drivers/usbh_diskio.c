@@ -27,14 +27,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
-#include <usbh_def.h>
-#include <usbh_msc.h>
 #include "ff_gen_drv.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-#define HOST_HANDLE hUsbHostFS
 extern USBH_HandleTypeDef  HOST_HANDLE;
 #if _USE_BUFF_WO_ALIGNMENT == 0
 /* Local buffer use to handle buffer not aligned 32bits*/

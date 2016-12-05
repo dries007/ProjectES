@@ -118,7 +118,7 @@ to exclude the API function. */
 #define INCLUDE_vTaskDelete                 1
 #define INCLUDE_vTaskCleanUpResources       0
 #define INCLUDE_vTaskSuspend                1
-#define INCLUDE_vTaskDelayUntil             0
+#define INCLUDE_vTaskDelayUntil             1
 #define INCLUDE_vTaskDelay                  1
 #define INCLUDE_xTaskGetSchedulerState      1
 
@@ -152,6 +152,7 @@ header file. */
 /* USER CODE BEGIN 1 */   
 #define configASSERT( x ) if ((x) == 0) {taskDISABLE_INTERRUPTS(); for( ;; );}
 #define configASSERT_EQ( x, y ) if ((x) != (y)) {taskDISABLE_INTERRUPTS(); for( ;; );}
+#define configASSERT_NEQ( x, y ) if ((x) == (y)) {taskDISABLE_INTERRUPTS(); for( ;; );}
 /* USER CODE END 1 */
 
 /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS

@@ -20,6 +20,7 @@
 #include <stm32746g_discovery_lcd.h>
 #include <stm32746g_discovery_ts.h>
 #include <stm32746g_discovery_sd.h>
+#include <stm32746g_discovery_eeprom.h>
 #include <usbh_core.h>
 #include <usbh_msc.h>
 
@@ -31,5 +32,8 @@
 #include <cmsis_os.h>
 
 #include "color.h"
+
+#define RTC_I2C_ADDR 0x68
+#define EEPROM_I2C_ADDR 0x57
 
 #endif //PROJECT_APP_MAIN_H

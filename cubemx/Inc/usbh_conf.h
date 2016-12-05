@@ -82,7 +82,7 @@
 #define USBH_MAX_DATA_BUFFER      512 
  
 /*----------   -----------*/
-#define USBH_DEBUG_LEVEL      0 
+#define USBH_DEBUG_LEVEL      3
  
 /*----------   -----------*/
 #define USBH_USE_OS      1 
@@ -100,21 +100,27 @@
   */ 
 #if (USBH_USE_OS == 1)
   #include "cmsis_os.h"
-  #define   USBH_PROCESS_PRIO          osPriorityNormal
-  #define   USBH_PROCESS_STACK_SIZE    ((uint16_t)128)
+//  #define   USBH_PROCESS_PRIO          osPriorityNormal
+  #define   USBH_PROCESS_PRIO          osPriorityHigh
+  #define   USBH_PROCESS_STACK_SIZE    ((uint16_t)8*configMINIMAL_STACK_SIZE)
 #endif    
 
- /* Memory management macros */   
+ /* Memory management macros */
+//#define USBH_malloc               pvPortMalloc
+//#define USBH_free                 vPortFree
+//#define USBH_memset               memset
+//#define USBH_memcpy               memcpy
 #define USBH_malloc               malloc
 #define USBH_free                 free
 #define USBH_memset               memset
 #define USBH_memcpy               memcpy
-    
- /* DEBUG macros */  
+
+ /* DEBUG macros */
+
+#include "tmp.h"
 
 #if (USBH_DEBUG_LEVEL > 0)
-#define  USBH_UsrLog(...)   printf(__VA_ARGS__);\
-                            printf("\n");
+#define  USBH_UsrLog(...)   { char buffer[256]; sprintf(buffer, __VA_ARGS__); buffer[255] = 0; lcdDebug(buffer); }
 #else
 #define USBH_UsrLog(...)   
 #endif 
@@ -122,18 +128,14 @@
                             
 #if (USBH_DEBUG_LEVEL > 1)
 
-#define  USBH_ErrLog(...)   printf("ERROR: ") ;\
-                            printf(__VA_ARGS__);\
-                            printf("\n");
+#define  USBH_ErrLog(...)   { char buffer[256]; sprintf(buffer, __VA_ARGS__); buffer[255] = 0; lcdDebug(buffer); }
 #else
 #define USBH_ErrLog(...)   
 #endif 
                             
                             
 #if (USBH_DEBUG_LEVEL > 2)                         
-#define  USBH_DbgLog(...)   printf("DEBUG : ") ;\
-                            printf(__VA_ARGS__);\
-                            printf("\n");
+#define  USBH_DbgLog(...)   { char buffer[256]; sprintf(buffer, __VA_ARGS__); buffer[255] = 0; lcdDebug(buffer); }
 #else
 #define USBH_DbgLog(...)                         
 #endif

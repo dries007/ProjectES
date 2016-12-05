@@ -43,9 +43,10 @@
 */
 /* Includes ------------------------------------------------------------------*/
 #include "usbh_core.h"
-#include "usbh_platform.h"
 
 HCD_HandleTypeDef hhcd_USB_OTG_FS;
+void Error_Handler(void);
+HCD_HandleTypeDef hhcd_USB_OTG_HS;
 void Error_Handler(void);
 
 /*******************************************************************************
@@ -283,6 +284,28 @@ USBH_StatusTypeDef  USBH_LL_Init (USBH_HandleTypeDef *phost)
 
   USBH_LL_SetTimer (phost, HAL_HCD_GetCurrentFrame(&hhcd_USB_OTG_FS));
   }
+  if (phost->id == HOST_HS) {
+  /* Link The driver to the stack */
+  hhcd_USB_OTG_HS.pData = phost;
+  phost->pData = &hhcd_USB_OTG_HS;
+
+  hhcd_USB_OTG_HS.Instance = USB_OTG_HS;
+  hhcd_USB_OTG_HS.Init.dev_endpoints = 8;
+  hhcd_USB_OTG_HS.Init.Host_channels = 12;
+  hhcd_USB_OTG_HS.Init.speed = HCD_SPEED_HIGH;
+  hhcd_USB_OTG_HS.Init.dma_enable = DISABLE;
+  hhcd_USB_OTG_HS.Init.phy_itface = USB_OTG_ULPI_PHY;
+  hhcd_USB_OTG_HS.Init.Sof_enable = DISABLE;
+  hhcd_USB_OTG_HS.Init.low_power_enable = DISABLE;
+  hhcd_USB_OTG_HS.Init.vbus_sensing_enable = DISABLE;
+  hhcd_USB_OTG_HS.Init.use_external_vbus = ENABLE;
+  if (HAL_HCD_Init(&hhcd_USB_OTG_HS) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  USBH_LL_SetTimer (phost, HAL_HCD_GetCurrentFrame(&hhcd_USB_OTG_HS));
+  }
   return USBH_OK;
 }
 
@@ -501,12 +524,47 @@ USBH_URBStateTypeDef  USBH_LL_GetURBState (USBH_HandleTypeDef *phost, uint8_t pi
   */
 USBH_StatusTypeDef  USBH_LL_DriverVBUS (USBH_HandleTypeDef *phost, uint8_t state)
 { 
-  if (phost->id == HOST_FS) {
-    MX_DriverVbusFS(state);
-  }
 
   /* USER CODE BEGIN 0 */
   /* USER CODE END 0*/     
+  if (phost->id == HOST_FS) 
+  { 
+    if (state == 0)
+    {   
+      /* Drive high Charge pump */
+      /* ToDo: Add IOE driver control */	   
+      /* USER CODE BEGIN DRIVE_HIGH_CHARGE_FOR_FS */
+    
+      /* USER CODE END DRIVE_HIGH_CHARGE_FOR_FS */ 
+    } 
+    else
+    {
+      /* Drive low Charge pump */
+      /* ToDo: Add IOE driver control */	
+      /* USER CODE BEGIN DRIVE_LOW_CHARGE_FOR_FS */
+   
+      /* USER CODE END DRIVE_HIGH_CHARGE_FOR_FS */ 
+    }
+  }	
+  if (phost->id == HOST_HS) 
+  {  
+    if (state == 0)	  
+    {
+      /* Drive high Charge pump */
+      /* ToDo: Add IOE driver control */	   
+      /* USER CODE BEGIN DRIVE_HIGH_CHARGE_FOR_HS */
+ 
+	  /* USER CODE END DRIVE_HIGH_CHARGE_FOR_HS */ 
+    }
+    else
+    {
+      /* Drive low Charge pump */
+      /* ToDo: Add IOE driver control */	
+      /* USER CODE BEGIN DRIVE_LOW_CHARGE_FOR_HS */
+		
+      /* USER CODE BEGIN DRIVE_LOW_CHARGE_FOR_HS */    	 
+    }  
+  }
   HAL_Delay(200);
   return USBH_OK;  
 }

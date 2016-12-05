@@ -17,7 +17,7 @@ SET(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -std=c++11")
 SET(CMAKE_C_FLAGS "${COMMON_FLAGS} -std=gnu11")
 
 SET(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/cubemx/STM32F746NGHx_FLASH.ld")
-SET(CMAKE_EXE_LINKER_FLAGS "-Wl,-gc-sections -T ${LINKER_SCRIPT}")
+SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--undefined=uxTopUsedPriority,-gc-sections -T ${LINKER_SCRIPT}")
 
 add_library(LIB
         cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates/system_stm32f7xx.c

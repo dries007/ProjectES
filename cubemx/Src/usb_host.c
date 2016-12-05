@@ -49,6 +49,7 @@
 #include "usbh_msc.h"
 
 /* USB Host Core handle declaration */
+USBH_HandleTypeDef hUsbHostHS;
 USBH_HandleTypeDef hUsbHostFS;
 ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 
@@ -62,7 +63,8 @@ ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 /*
 * user callbak declaration
 */ 
-static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id);
+static void USBH_UserProcess1  (USBH_HandleTypeDef *phost, uint8_t id);
+static void USBH_UserProcess2  (USBH_HandleTypeDef *phost, uint8_t id);
 
 /**
 * -- Insert your external function declaration here --
@@ -75,7 +77,14 @@ static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id);
 void MX_USB_HOST_Init(void)
 {
   /* Init Host Library,Add Supported Class and Start the library*/
-  USBH_Init(&hUsbHostFS, USBH_UserProcess, HOST_FS);
+  USBH_Init(&hUsbHostHS, USBH_UserProcess1, HOST_HS);
+
+  USBH_RegisterClass(&hUsbHostHS, USBH_MSC_CLASS);
+
+  USBH_Start(&hUsbHostHS);
+
+  /* Init Host Library,Add Supported Class and Start the library*/
+  USBH_Init(&hUsbHostFS, USBH_UserProcess2, HOST_FS);
 
   USBH_RegisterClass(&hUsbHostFS, USBH_MSC_CLASS);
 
@@ -85,7 +94,33 @@ void MX_USB_HOST_Init(void)
 /*
  * user callbak definition
 */ 
-static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
+static void USBH_UserProcess1  (USBH_HandleTypeDef *phost, uint8_t id)
+{
+
+  /* USER CODE BEGIN 2 */
+  switch(id)
+  { 
+  case HOST_USER_SELECT_CONFIGURATION:
+  break;
+    
+  case HOST_USER_DISCONNECTION:
+  Appli_state = APPLICATION_DISCONNECT;
+  break;
+    
+  case HOST_USER_CLASS_ACTIVE:
+  Appli_state = APPLICATION_READY;
+  break;
+
+  case HOST_USER_CONNECTION:
+  Appli_state = APPLICATION_START;
+  break;
+
+  default:
+  break; 
+  }
+  /* USER CODE END 2 */
+}
+static void USBH_UserProcess2  (USBH_HandleTypeDef *phost, uint8_t id)
 {
 
   /* USER CODE BEGIN 2 */

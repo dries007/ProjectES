@@ -7,20 +7,6 @@
 
 #include "app_main.h"
 
-// Windows, Y U DO THIS TO ME
-#include "../cubemx/Drivers/CMSIS/Include/core_cm7.h"
-#include "../bsp/stm32746g_discovery.h"
-#include "../bsp/stm32746g_discovery_lcd.h"
-#include "../bsp/stm32746g_discovery_sd.h"
-#include "../cubemx/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-#include "../cubemx/Inc/fatfs.h"
-#include "../cubemx/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
-#include "../cubemx/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h"
-#include "../cubemx/Middlewares/Third_Party/FatFs/src/ff.h"
-#include "../cubemx/Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-#include "../cubemx/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h"
-#include "../cubemx/Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
-
 void app_pre_init();
 void app_init();
 void app_post_init();
@@ -31,6 +17,53 @@ void ledTask(void const * argument);
 
 extern void Error_Handler(void);
 
+extern I2C_HandleTypeDef hi2c1;
+
+void usb_test()
+{
+    FRESULT res;
+    FATFS fs;
+    DIR dir;
+    FILINFO fno;
+
+    lcdDebug(USBH_Path);
+
+    osDelay(5000);
+    res = f_mount(&fs, USBH_Path, 0); configASSERT_EQ(res, FR_OK);
+    osDelay(5000);
+    res = f_opendir(&dir, USBH_Path); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+
+    for (uint32_t count = 0; true; count++)
+    {
+        res = f_readdir(&dir, &fno);
+        configASSERT_EQ(res, FR_OK);
+        if (fno.fname[0] == 0) break;
+
+        BSP_LCD_DisplayStringAt(0, (uint16_t) (count * BSP_LCD_GetFont()->Height), (uint8_t *) fno.fname, RIGHT_MODE);
+    }
+    osDelay(10);
+
+    FIL file;
+    char fname[64];
+    strcat(fname, USBH_Path);
+    strcat(fname, "TEST.TXT");
+
+    res = f_open(&file, fname, FA_READ | FA_WRITE | FA_OPEN_ALWAYS); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_lseek(&file, f_size(&file)); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    int wr = 0;
+    wr = f_printf(&file, "TEST!\t\n");
+    configASSERT_EQ(wr, EOF);
+    osDelay(10);
+    res = f_sync(&file); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_close(&file); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_mount(NULL, SD_Path, 1); configASSERT_EQ(res, FR_OK);
+}
+
 void sd_test()
 {
     BSP_LCD_Clear(0);
@@ -40,8 +73,11 @@ void sd_test()
     DIR dir;
     FILINFO fno;
 
-    res = f_mount(&fs, "", 1); configASSERT_EQ(res, FR_OK);
-    res = f_opendir(&dir, ""); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_mount(&fs, SD_Path, 1); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_opendir(&dir, SD_Path); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
 
     for (uint32_t count = 0; true; count++)
     {
@@ -49,38 +85,30 @@ void sd_test()
         configASSERT_EQ(res, FR_OK);
         if (fno.fname[0] == 0) break;
 
-        BSP_LCD_DisplayStringAtLine((uint16_t) (count + 3), (uint8_t *) fno.fname);
+        BSP_LCD_DisplayStringAt(0, (uint16_t) (count * BSP_LCD_GetFont()->Height), (uint8_t *) fno.fname, LEFT_MODE);
     }
+    osDelay(10);
 
     FIL file;
-    res = f_open(&file, "TEST.TXT", FA_READ | FA_WRITE | FA_OPEN_ALWAYS);
-    configASSERT_EQ(res, FR_OK);
+    char fname[64] = "";
+    strcat(fname, SD_Path);
+    strcat(fname, "TEST.TXT");
 
-    res = f_lseek(&file, f_size(&file));
-    configASSERT_EQ(res, FR_OK);
+    res = f_open(&file, fname, FA_READ | FA_WRITE | FA_OPEN_ALWAYS); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_lseek(&file, f_size(&file)); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
 
-    unsigned int wr = 0;
-//    res = f_write(&file, "OMG!", 4, &wr);
-    wr = (unsigned int) f_printf( &file, "TEST!\t\n");
+    int wr = 0;
+    wr = f_printf(&file, "TEST!\t\n");
+    configASSERT_NEQ(wr, EOF);
 
-    configASSERT_EQ(res, FR_OK);
-
-    taskENTER_CRITICAL();
-    res = f_sync(&file);
-    configASSERT_EQ(res, FR_OK);
-
-    res = f_close(&file);
-    configASSERT_EQ(res, FR_OK);
-    taskEXIT_CRITICAL();
-
-    res = f_mount(NULL, "", 1);
-    configASSERT_EQ(res, FR_OK);
-
-    char str[128];
-    sprintf(str, "OMG! Wr: %d Size: %d", wr, (int) f_size(&file));
-    BSP_LCD_DisplayStringAtLine( (uint16_t) ((BSP_LCD_GetYSize() / BSP_LCD_GetFont()->Height) - 1), (uint8_t*) str);
-
-    return;
+    osDelay(10);
+    res = f_sync(&file); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_close(&file); configASSERT_EQ(res, FR_OK);
+    osDelay(10);
+    res = f_mount(NULL, SD_Path, 1); configASSERT_EQ(res, FR_OK);
 }
 
 void app_pre_init()
@@ -94,6 +122,7 @@ void app_init()
     BSP_LED_Init(LED1);
     BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
     BSP_LCD_Init(0, 0, 0);
+    BSP_SD_Init();
 
     BSP_LCD_LayerDefaultInit(0, LCD_FB_START_ADDRESS);
     BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS+(BSP_LCD_GetXSize()*BSP_LCD_GetYSize()*4));
@@ -112,22 +141,24 @@ void app_init()
     BSP_LCD_DisplayStringAt(0, 0, (uint8_t *) "Booting...", CENTER_MODE);
     BSP_LCD_DisplayStringAt(0, BSP_LCD_GetFont()->Height, (uint8_t *) "DHCP takes a while...", CENTER_MODE);
 
-//    USB_HC_Init()
-
-
-
-    while (!BSP_SD_IsDetected())
-    {
-        BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetFont()->Height * 2), (uint8_t*) "Please insert SD Card...", CENTER_MODE);
-        HAL_Delay(10);
-    }
-    BSP_LCD_ClearStringLine(2);
-
-    configASSERT_EQ(BSP_SD_Init(), MSD_OK);
-
     MX_FATFS_Init();
 
-    BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetFont()->Height * 2), (uint8_t*) SD_Path, CENTER_MODE);
+//    USB_HC_Init()
+//
+//    while (!BSP_SD_IsDetected())
+//    {
+//        BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetFont()->Height * 2), (uint8_t*) "Please insert SD Card...", CENTER_MODE);
+//        HAL_Delay(10);
+//    }
+//    BSP_LCD_ClearStringLine(2);
+//
+//    configASSERT_EQ(BSP_SD_Init(), MSD_OK);
+//
+//    MX_FATFS_Init();
+//
+//    BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetFont()->Height * 2), (uint8_t*) SD_Path, CENTER_MODE);
+//    BSP_LCD_DisplayStringAt(0, (uint16_t) (BSP_LCD_GetFont()->Height * 3), (uint8_t*) USBH_Path, CENTER_MODE);
+
 }
 
 void app_post_init()
@@ -145,15 +176,30 @@ void app_main_thread()
 
     BSP_LCD_Clear(0);
 
-    sd_test();
+//    sd_test();
+//    usb_test();
+
+    HAL_StatusTypeDef status;
+
+    status = HAL_I2C_Init(&hi2c1);
+    configASSERT_EQ(status, HAL_OK);
+
+    char data[0x14];
+    data[0x13] = '\0';
+
+    status = HAL_I2C_IsDeviceReady(&hi2c1, RTC_I2C_ADDR, 300, 300);
+    configASSERT_EQ(status, HAL_OK);
+
+    status = HAL_I2C_Mem_Read(&hi2c1, RTC_I2C_ADDR, 0x00, 1, (uint8_t *) data, 0x12, 300);
+    configASSERT_EQ(status, HAL_OK);
+
+    lcdDebug(data);
+
+    BSP_LCD_Clear(0);
 
     while (true)
     {
-        if (BSP_PB_GetState(BUTTON_KEY))
-        {
-            HAL_NVIC_SystemReset();
-        }
-        osDelayUntil(&previousWakeTime, 10);
+        osDelayUntil(&previousWakeTime, 100);
     }
 }
 
@@ -171,7 +217,7 @@ void lcdTask(void const * argument)
 
         LTDC->BCCR = ((uint8_t) (rgb.r * 0xFF) << 16 | (uint8_t) (rgb.g * 0xFF) << 8 | (uint8_t) (rgb.b * 0xFF));
 
-        osDelayUntil(&previousWakeTime, 10);
+        osDelayUntil(&previousWakeTime, 25);
     }
 }
 

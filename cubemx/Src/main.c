@@ -61,7 +61,6 @@
 #include "tim.h"
 #include "usart.h"
 #include "usb_host.h"
-#include "usb_otg_hs.h"
 #include "gpio.h"
 #include "fmc.h"
 
@@ -130,7 +129,6 @@ int main(void)
   MX_TIM12_Init();
   MX_USART1_UART_Init();
   MX_USART6_UART_Init();
-  MX_USB_OTG_HS_HCD_Init();
   MX_DMA2D_Init();
   MX_RNG_Init();
 
