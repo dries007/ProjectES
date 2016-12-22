@@ -43,6 +43,8 @@
 */
 /* Includes ------------------------------------------------------------------*/
 #include "usbh_core.h"
+#include "../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_hcd.h"
+#include "../Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_def.h"
 
 HCD_HandleTypeDef hhcd_USB_OTG_FS;
 void Error_Handler(void);

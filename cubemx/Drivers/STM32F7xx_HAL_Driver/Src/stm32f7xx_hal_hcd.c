@@ -83,6 +83,7 @@
   * @{
   */
 
+#define HAL_HCD_MODULE_ENABLED
 #ifdef HAL_HCD_MODULE_ENABLED
 
 /* Private typedef -----------------------------------------------------------*/

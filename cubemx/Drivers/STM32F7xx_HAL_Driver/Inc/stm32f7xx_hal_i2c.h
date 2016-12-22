@@ -44,7 +44,10 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f7xx_hal_def.h"  
+#include "stm32f7xx_hal_def.h"
+#include "stm32f7xx_hal_dma.h"
+#include "../../CMSIS/Include/core_cm7.h"
+#include "../../CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{

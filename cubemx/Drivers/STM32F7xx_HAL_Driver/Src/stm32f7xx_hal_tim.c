@@ -127,6 +127,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
+#include "../Inc/stm32f7xx_hal_tim.h"
+#include "../../CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
@@ -136,7 +138,7 @@
   * @brief TIM HAL module driver
   * @{
   */
-
+#define HAL_TIM_MODULE_ENABLED
 #ifdef HAL_TIM_MODULE_ENABLED
 
 /* Private typedef -----------------------------------------------------------*/

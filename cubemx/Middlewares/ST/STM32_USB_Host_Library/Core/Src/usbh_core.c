@@ -28,6 +28,7 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "usbh_core.h"
+#include "../Inc/usbh_core.h"
 
 
 /** @addtogroup USBH_LIB

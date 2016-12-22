@@ -47,6 +47,7 @@
 #include "usb_host.h"
 #include "usbh_core.h"
 #include "usbh_msc.h"
+#include "../Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.h"
 
 /* USB Host Core handle declaration */
 USBH_HandleTypeDef hUsbHostHS;

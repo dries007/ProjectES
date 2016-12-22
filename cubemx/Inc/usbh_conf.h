@@ -100,44 +100,40 @@
   */ 
 #if (USBH_USE_OS == 1)
   #include "cmsis_os.h"
-//  #define   USBH_PROCESS_PRIO          osPriorityNormal
-  #define   USBH_PROCESS_PRIO          osPriorityHigh
-  #define   USBH_PROCESS_STACK_SIZE    ((uint16_t)8*configMINIMAL_STACK_SIZE)
+  #define   USBH_PROCESS_PRIO          osPriorityAboveNormal
+  #define   USBH_PROCESS_STACK_SIZE    ((uint16_t)2*128)
 #endif    
 
- /* Memory management macros */
-//#define USBH_malloc               pvPortMalloc
-//#define USBH_free                 vPortFree
-//#define USBH_memset               memset
-//#define USBH_memcpy               memcpy
+ /* Memory management macros */   
 #define USBH_malloc               malloc
 #define USBH_free                 free
 #define USBH_memset               memset
 #define USBH_memcpy               memcpy
-
+    
  /* DEBUG macros */
+
 
 #include "tmp.h"
 
 #if (USBH_DEBUG_LEVEL > 0)
-#define  USBH_UsrLog(...)   { char buffer[256]; sprintf(buffer, __VA_ARGS__); buffer[255] = 0; lcdDebug(buffer); }
+#define  USBH_UsrLog(...)   { char b[151]; sprintf(b, __VA_ARGS__); b[150] = 0; lcdDebug(b); }
 #else
-#define USBH_UsrLog(...)   
-#endif 
-                            
-                            
+#define USBH_UsrLog(...)
+#endif
+
+
 #if (USBH_DEBUG_LEVEL > 1)
 
-#define  USBH_ErrLog(...)   { char buffer[256]; sprintf(buffer, __VA_ARGS__); buffer[255] = 0; lcdDebug(buffer); }
+#define  USBH_ErrLog(...)   lcdDebug("ERROR: "); USBH_UsrLog(__VA_ARGS__)
 #else
-#define USBH_ErrLog(...)   
-#endif 
-                            
-                            
-#if (USBH_DEBUG_LEVEL > 2)                         
-#define  USBH_DbgLog(...)   { char buffer[256]; sprintf(buffer, __VA_ARGS__); buffer[255] = 0; lcdDebug(buffer); }
+#define USBH_ErrLog(...)
+#endif
+
+
+#if (USBH_DEBUG_LEVEL > 2)
+#define  USBH_DbgLog(...)   lcdDebug("DEBUG: "); USBH_UsrLog(__VA_ARGS__)
 #else
-#define USBH_DbgLog(...)                         
+#define USBH_DbgLog(...)
 #endif
                             
 /**

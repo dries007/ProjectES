@@ -244,6 +244,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
+#include "../Inc/stm32f7xx_hal_dma.h"
+#include "../Inc/stm32f7xx_hal_i2c.h"
+#include "../../CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+#include "../../../Inc/stm32f7xx_hal_conf.h"
+#include "../../CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h"
+#include "../Inc/stm32f7xx_hal.h"
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
@@ -253,7 +259,7 @@
   * @brief I2C HAL module driver
   * @{
   */
-
+#define HAL_I2C_MODULE_ENABLED
 #ifdef HAL_I2C_MODULE_ENABLED
 
 /* Private typedef -----------------------------------------------------------*/
@@ -2412,7 +2418,7 @@ HAL_StatusTypeDef HAL_I2C_Mem_Read_DMA(I2C_HandleTypeDef *hi2c, uint16_t DevAddr
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint32_t Trials, uint32_t Timeout)
-{  
+{
   uint32_t tickstart = 0;
   
   __IO uint32_t I2C_Trials = 0;

@@ -44,6 +44,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "rtc.h"
+#include "../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rtc.h"
+#include "../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
 
 /* USER CODE BEGIN 0 */
 

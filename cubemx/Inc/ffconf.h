@@ -53,7 +53,7 @@
 #include "usbh_msc.h"
 
 	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                                       	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                          	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                              	  	  	  	                    	  	  	  	                               	  	  	  	                    	           	  	  	                    	  	            	  	                    	  	  	           	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  	                    	  	  	  /* Handle for USB Host */                       
-#define HOST_HANDLE hUsbHostFS   	    
+#define HOST_HANDLE hUsbHostHS   	    
 	                    	  	  	  
 
 /*-----------------------------------------------------------------------------/

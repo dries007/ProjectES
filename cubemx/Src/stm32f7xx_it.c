@@ -35,6 +35,7 @@
 #include "stm32f7xx.h"
 #include "stm32f7xx_it.h"
 #include "cmsis_os.h"
+#include "../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h"
 
 /* USER CODE BEGIN 0 */
 

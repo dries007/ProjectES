@@ -46,6 +46,7 @@
 #include "i2c.h"
 
 #include "gpio.h"
+#include "../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
 
 /* USER CODE BEGIN 0 */
 

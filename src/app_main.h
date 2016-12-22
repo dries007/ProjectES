@@ -33,7 +33,7 @@
 
 #include "color.h"
 
-#define RTC_I2C_ADDR 0x68
-#define EEPROM_I2C_ADDR 0x57
+#define RTC_I2C_ADDR (0x68 << 1)
+#define EEPROM_I2C_ADDR (0x57 << 1)
 
 #endif //PROJECT_APP_MAIN_H

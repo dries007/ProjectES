@@ -2,7 +2,9 @@
 // Created by dries on 3/12/16.
 //
 
+#include "tmp.h"
 #include "app_main.h"
+#include "../bsp/stm32746g_discovery_lcd.h"
 
 void lcdDebug(char *buffer)
 {
