@@ -1,0 +1,543 @@
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:349:4: Semantic comment unrecognized:
+                                                   }
+  Word after a stylized comment marker does not correspond to a stylized
+  comment. (Use -unrecogcomments to inhibit warning)
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:821:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1366:4: Semantic comment unrecognized:
+                                                    }
+CubeMX/Drivers/CMSIS/Include/core_cmInstr.h:85:4:
+    Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cmFunc.h:85:4: Semantic comment unrecognized:
+                                                    }
+CubeMX/Drivers/CMSIS/Include/core_cmSimd.h:89:4: Semantic comment unrecognized:
+                                                    }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:293:4: Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:453:4: Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:487:4: Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:893:4: Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:933:4: Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:985:4: Semantic comment unrecognized: }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1088:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1238:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1393:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1487:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1598:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1704:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1730:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1769:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2013:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2052:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2380:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2423:4: Semantic comment unrecognized:
+                                                   }
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2501:4: Semantic comment unrecognized:
+                                                   }
+src/app.c: (in function prvBSPInit)
+src/app.c:79:5: Return value (type uint8_t) ignored: BSP_LCD_Init(0, ...
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalother to inhibit warning)
+src/app.c: (in function prvInitRTC)
+src/app.c:114:49: Function HAL_I2C_IsDeviceReady expects arg 2 to be uint16_t
+                     gets int: (0x68 << 1)
+  To allow arbitrary integral types to match any integral type, use
+  +matchanyintegral.
+src/app.c:118:44: Function HAL_I2C_Mem_Read expects arg 2 to be uint16_t gets
+                     int: (0x68 << 1)
+src/app.c:122:11: Operands of != have incompatible types (uint8_t, int):
+                     (ucBuffer[0] & (1 << 7)) != (1 << 7)
+src/app.c:122:58: Operands of == have incompatible types (uint8_t, int):
+                     (ucBuffer[1] & (1 << 7)) == (1 << 7)
+src/app.c:130:44: Function HAL_I2C_Mem_Read expects arg 2 to be uint16_t gets
+                     int: (0x68 << 1)
+src/app.c: (in function ulAppGetFATTimestamp)
+src/app.c:204:5: Return value (type HAL_StatusTypeDef) ignored:
+                    HAL_RTC_GetDate(...
+src/app.c:205:5: Return value (type HAL_StatusTypeDef) ignored:
+                    HAL_RTC_GetTime(...
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:58:34:
+    File static function __enable_irq declared but not used
+  A function is declared but not used. Use /*@unused@*/ in front of function
+  header to suppress message. (Use -fcnuse to inhibit warning)
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:61:1: Definition of __enable_irq
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:69:34:
+    File static function __disable_irq declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:72:1: Definition of __disable_irq
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:80:38:
+    File static function __get_CONTROL declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:86:1: Definition of __get_CONTROL
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:94:34:
+    File static function __set_CONTROL declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:97:1: Definition of __set_CONTROL
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:105:38:
+    File static function __get_IPSR declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:111:1: Definition of __get_IPSR
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:119:38:
+    File static function __get_APSR declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:125:1: Definition of __get_APSR
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:134:38:
+    File static function __get_xPSR declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:140:1: Definition of __get_xPSR
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:148:38:
+    File static function __get_PSP declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:154:1: Definition of __get_PSP
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:162:34:
+    File static function __set_PSP declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:165:1: Definition of __set_PSP
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:173:38:
+    File static function __get_MSP declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:179:1: Definition of __get_MSP
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:188:34:
+    File static function __set_MSP declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:191:1: Definition of __set_MSP
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:199:38:
+    File static function __get_PRIMASK declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:205:1: Definition of __get_PRIMASK
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:213:34:
+    File static function __set_PRIMASK declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:216:1: Definition of __set_PRIMASK
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:226:34:
+    File static function __enable_fault_irq declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:229:1:
+   Definition of __enable_fault_irq
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:237:34:
+    File static function __disable_fault_irq declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:240:1:
+   Definition of __disable_fault_irq
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:248:38:
+    File static function __get_BASEPRI declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:254:1: Definition of __get_BASEPRI
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:262:34:
+    File static function __set_BASEPRI declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:265:1: Definition of __set_BASEPRI
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:274:34:
+    File static function __set_BASEPRI_MAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:277:1:
+   Definition of __set_BASEPRI_MAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:285:38:
+    File static function __get_FAULTMASK declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:291:1:
+   Definition of __get_FAULTMASK
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:299:34:
+    File static function __set_FAULTMASK declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:302:1:
+   Definition of __set_FAULTMASK
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:314:38:
+    File static function __get_FPSCR declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:327:1: Definition of __get_FPSCR
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:335:34:
+    File static function __set_FPSCR declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:343:2: Definition of __set_FPSCR
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:383:34:
+    File static function __WFI declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:386:1: Definition of __WFI
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:394:34:
+    File static function __WFE declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:397:1: Definition of __WFE
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:404:34:
+    File static function __SEV declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:407:1: Definition of __SEV
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:438:34:
+    File static function __DMB declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:441:1: Definition of __DMB
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:450:38:
+    File static function __REV declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:460:1: Definition of __REV
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:469:38:
+    File static function __REV16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:475:1: Definition of __REV16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:484:37:
+    File static function __REVSH declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:494:1: Definition of __REVSH
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:504:38:
+    File static function __ROR declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:507:1: Definition of __ROR
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:526:38:
+    File static function __RBIT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:545:1: Definition of __RBIT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:565:37:
+    File static function __LDREXB declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:578:1: Definition of __LDREXB
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:587:38:
+    File static function __LDREXH declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:600:1: Definition of __LDREXH
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:609:38:
+    File static function __LDREXW declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:615:1: Definition of __LDREXW
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:626:38:
+    File static function __STREXB declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:632:1: Definition of __STREXB
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:643:38:
+    File static function __STREXH declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:649:1: Definition of __STREXH
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:660:38:
+    File static function __STREXW declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:666:1: Definition of __STREXW
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:673:34:
+    File static function __CLREX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:676:1: Definition of __CLREX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:716:38:
+    File static function __RRX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:722:1: Definition of __RRX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:731:37:
+    File static function __LDRBT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:744:1: Definition of __LDRBT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:753:38:
+    File static function __LDRHT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:766:1: Definition of __LDRHT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:775:38:
+    File static function __LDRT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:781:1: Definition of __LDRT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:790:34:
+    File static function __STRBT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:793:1: Definition of __STRBT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:802:34:
+    File static function __STRHT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:805:1: Definition of __STRHT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:814:34:
+    File static function __STRT declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:817:1: Definition of __STRT
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:832:38:
+    File static function __SADD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:838:1: Definition of __SADD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:840:38:
+    File static function __QADD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:846:1: Definition of __QADD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:848:38:
+    File static function __SHADD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:854:1: Definition of __SHADD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:856:38:
+    File static function __UADD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:862:1: Definition of __UADD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:864:38:
+    File static function __UQADD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:870:1: Definition of __UQADD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:872:38:
+    File static function __UHADD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:878:1: Definition of __UHADD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:881:38:
+    File static function __SSUB8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:887:1: Definition of __SSUB8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:889:38:
+    File static function __QSUB8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:895:1: Definition of __QSUB8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:897:38:
+    File static function __SHSUB8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:903:1: Definition of __SHSUB8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:905:38:
+    File static function __USUB8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:911:1: Definition of __USUB8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:913:38:
+    File static function __UQSUB8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:919:1: Definition of __UQSUB8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:921:38:
+    File static function __UHSUB8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:927:1: Definition of __UHSUB8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:930:38:
+    File static function __SADD16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:936:1: Definition of __SADD16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:938:38:
+    File static function __QADD16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:944:1: Definition of __QADD16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:946:38:
+    File static function __SHADD16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:952:1: Definition of __SHADD16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:954:38:
+    File static function __UADD16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:960:1: Definition of __UADD16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:962:38:
+    File static function __UQADD16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:968:1: Definition of __UQADD16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:970:38:
+    File static function __UHADD16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:976:1: Definition of __UHADD16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:978:38:
+    File static function __SSUB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:984:1: Definition of __SSUB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:986:38:
+    File static function __QSUB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:992:1: Definition of __QSUB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:994:38:
+    File static function __SHSUB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1000:1: Definition of __SHSUB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1002:38:
+    File static function __USUB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1008:1: Definition of __USUB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1010:38:
+    File static function __UQSUB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1016:1: Definition of __UQSUB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1018:38:
+    File static function __UHSUB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1024:1: Definition of __UHSUB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1026:38:
+    File static function __SASX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1032:1: Definition of __SASX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1034:38:
+    File static function __QASX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1040:1: Definition of __QASX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1042:38:
+    File static function __SHASX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1048:1: Definition of __SHASX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1050:38:
+    File static function __UASX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1056:1: Definition of __UASX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1058:38:
+    File static function __UQASX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1064:1: Definition of __UQASX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1066:38:
+    File static function __UHASX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1072:1: Definition of __UHASX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1074:38:
+    File static function __SSAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1080:1: Definition of __SSAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1082:38:
+    File static function __QSAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1088:1: Definition of __QSAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1090:38:
+    File static function __SHSAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1096:1: Definition of __SHSAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1098:38:
+    File static function __USAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1104:1: Definition of __USAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1106:38:
+    File static function __UQSAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1112:1: Definition of __UQSAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1114:38:
+    File static function __UHSAX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1120:1: Definition of __UHSAX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1122:38:
+    File static function __USAD8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1128:1: Definition of __USAD8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1130:38:
+    File static function __USADA8 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1136:1: Definition of __USADA8
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1152:38:
+    File static function __UXTB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1158:1: Definition of __UXTB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1160:38:
+    File static function __UXTAB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1166:1: Definition of __UXTAB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1168:38:
+    File static function __SXTB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1174:1: Definition of __SXTB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1176:38:
+    File static function __SXTAB16 declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1182:1: Definition of __SXTAB16
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1184:38:
+    File static function __SMUAD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1190:1: Definition of __SMUAD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1192:38:
+    File static function __SMUADX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1198:1: Definition of __SMUADX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1200:38:
+    File static function __SMLAD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1206:1: Definition of __SMLAD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1208:38:
+    File static function __SMLADX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1214:1: Definition of __SMLADX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1216:38:
+    File static function __SMLALD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1231:1: Definition of __SMLALD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1233:38:
+    File static function __SMLALDX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1248:1: Definition of __SMLALDX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1250:38:
+    File static function __SMUSD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1256:1: Definition of __SMUSD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1258:38:
+    File static function __SMUSDX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1264:1: Definition of __SMUSDX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1266:38:
+    File static function __SMLSD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1272:1: Definition of __SMLSD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1274:38:
+    File static function __SMLSDX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1280:1: Definition of __SMLSDX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1282:38:
+    File static function __SMLSLD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1297:1: Definition of __SMLSLD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1299:38:
+    File static function __SMLSLDX declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1314:1: Definition of __SMLSLDX
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1316:38:
+    File static function __SEL declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1322:1: Definition of __SEL
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1324:38:
+    File static function __QADD declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1330:1: Definition of __QADD
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1332:38:
+    File static function __QSUB declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1338:1: Definition of __QSUB
+CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1357:38:
+    File static function __SMMLA declared but not used
+   CubeMX/Drivers/CMSIS/Include/cmsis_gcc.h:1363:1: Definition of __SMMLA
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1804:20:
+    File static function NVIC_SetPriorityGrouping declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1815:1:
+   Definition of NVIC_SetPriorityGrouping
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1823:24:
+    File static function NVIC_GetPriorityGrouping declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1826:1:
+   Definition of NVIC_GetPriorityGrouping
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1834:20:
+    File static function NVIC_EnableIRQ declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1837:1: Definition of NVIC_EnableIRQ
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1845:20:
+    File static function NVIC_DisableIRQ declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1848:1:
+   Definition of NVIC_DisableIRQ
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1858:24:
+    File static function NVIC_GetPendingIRQ declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1861:1:
+   Definition of NVIC_GetPendingIRQ
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1869:20:
+    File static function NVIC_SetPendingIRQ declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1872:1:
+   Definition of NVIC_SetPendingIRQ
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1880:20:
+    File static function NVIC_ClearPendingIRQ declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1883:1:
+   Definition of NVIC_ClearPendingIRQ
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1893:24:
+    File static function NVIC_GetActive declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1896:1: Definition of NVIC_GetActive
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1928:24:
+    File static function NVIC_GetPriority declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1939:1:
+   Definition of NVIC_GetPriority
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1953:24:
+    File static function NVIC_EncodePriority declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1966:1:
+   Definition of NVIC_EncodePriority
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1980:20:
+    File static function NVIC_DecodePriority declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:1991:1:
+   Definition of NVIC_DecodePriority
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:1998:20:
+    File static function NVIC_SystemReset declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2011:1:
+   Definition of NVIC_SystemReset
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2032:24:
+    File static function SCB_GetFPUType declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2049:1: Definition of SCB_GetFPUType
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2090:20:
+    File static function SCB_DisableICache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2100:1:
+   Definition of SCB_DisableICache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2107:20:
+    File static function SCB_InvalidateICache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2116:1:
+   Definition of SCB_InvalidateICache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2161:20:
+    File static function SCB_DisableDCache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2191:1:
+   Definition of SCB_DisableDCache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2198:20:
+    File static function SCB_InvalidateDCache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2226:1:
+   Definition of SCB_InvalidateDCache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2233:20:
+    File static function SCB_CleanDCache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2261:1:
+   Definition of SCB_CleanDCache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2268:20:
+    File static function SCB_CleanInvalidateDCache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2296:1:
+   Definition of SCB_CleanInvalidateDCache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2305:20:
+    File static function SCB_InvalidateDCache_by_Addr declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2323:1:
+   Definition of SCB_InvalidateDCache_by_Addr
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2332:20:
+    File static function SCB_CleanDCache_by_Addr declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2350:1:
+   Definition of SCB_CleanDCache_by_Addr
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2359:20:
+    File static function SCB_CleanInvalidateDCache_by_Addr declared but not
+    used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2377:1:
+   Definition of SCB_CleanInvalidateDCache_by_Addr
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2405:24:
+    File static function SysTick_Config declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2419:1: Definition of SysTick_Config
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2447:24:
+    File static function ITM_SendChar declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2459:1: Definition of ITM_SendChar
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2468:23:
+    File static function ITM_ReceiveChar declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2479:1:
+   Definition of ITM_ReceiveChar
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2488:23:
+    File static function ITM_CheckChar declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2499:1: Definition of ITM_CheckChar
+src/config.c: (in function vConfigLoad)
+src/config.c:46:50: Function f_open expects arg 3 to be BYTE gets int:
+                       0x02 | 0x04
+  Types are incompatible. (Use -type to inhibit warning)
+src/config.c:49:9: Assignment of int to int32_t: lReturn = f_puts(";
+    Logger config\n"
+                                      "; Windows ini file format\n"
+                                      "; All section and properties are
+    lowercase.\n"
+                                      "\n"
+                                      "[general]\n"
+                                      "interval = 300\n"
+                                      "id = 0\n"
+                                      "\n"
+                                      "[server]\n"
+                                      "port = 41752\n"
+                                      "\n"
+                                      "[push]\n"
+                                      "ip = 255.255.255.255\n"
+                                      "port = 0\n", &xFile)
+  To allow arbitrary integral types to match long unsigned, use +longintegral.
+src/config.c:63:18: Operands of != have incompatible types (int32_t, int):
+                       lReturn != EOF
+src/config.c:75:5: Assignment of int to int32_t:
+                      lReturn = ini_parse_stream((ini_reader)f_gets, &xFile,
+                      prvHandler, &xConfigInstance)
+src/config.c: (in function prvHandler)
+src/config.c:128:9: Assignment of int to int32_t:
+                       pConfig->lInterval = atoi(value)
+src/config.c:132:9: Assignment of int to int32_t: pConfig->lId = atoi(value)
+src/config.c:147:10: Assignment of int to u32_t:
+    (&pConfig->usPushIp)->addr = ((b1 | (b2 << 8) | (b3 << 16) | (b4 << 24)))
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2073:20:
+    File static function SCB_EnableICache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2083:1:
+   Definition of SCB_EnableICache
+CubeMX/Drivers/CMSIS/Include/core_cm7.h:2123:20:
+    File static function SCB_EnableDCache declared but not used
+   CubeMX/Drivers/CMSIS/Include/core_cm7.h:2154:1:
+   Definition of SCB_EnableDCache
+src/ini.c: (in function ini_parse_stream)
+src/ini.c:136:17: Return value (type char *) ignored: strncpy0(section...
+src/ini.c:157:17: Return value (type char *) ignored: rstrip(value)
+src/ini.c:160:17: Return value (type char *) ignored: strncpy0(prev_na...
+src/log.c: (in function vLogBothF)
+src/log.c:34:5: Use vsnprintf instead: vsprintf
+  Use of function that may lead to buffer overflow. (Use -bufferoverflowhigh to
+  inhibit warning)
+src/log.c: (in function vLogFileF)
+src/log.c:55:5: Use vsnprintf instead: vsprintf
+src/log.c: (in function vLogFile)
+src/log.c:87:46: Function f_open expects arg 3 to be BYTE gets int: 0x02 | 0x10
+src/log.c:93:5: Assignment of int to int32_t: lResult = f_puts(string, &xFile)
+src/log.c:94:14: Operands of != have incompatible types (int32_t, int):
+                    lResult != EOF
+src/log.c:95:5: Assignment of int to int32_t: lResult = f_putc('\n', &xFile)
+src/log.c:96:14: Operands of != have incompatible types (int32_t, int):
+                    lResult != EOF
+src/log.c: (in function vLogLcdF)
+src/log.c:124:5: Use vsnprintf instead: vsprintf
